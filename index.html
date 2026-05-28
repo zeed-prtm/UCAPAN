@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartu Ucapan</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #d127b2, #fad0c4);
+      overflow: hidden;
+    }
+
+    .card{
+      position: relative;
+      width: 380px;
+      height: 250px;
+      perspective: 1000px;
+    }
+
+    .cover{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #c2329e;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transform-origin: left;
+      transition: transform 1s;
+      z-index: 5;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: 0.5s;
+    }
+
+    .cover:hover{
+      background: #a11a84;
+    }
+
+    .card.open .cover{
+      transform: rotateY(-125deg);
+    }
+
+    .page{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: fade 0.8s;
+    }
+
+    .page.active{
+      display: flex;
+    }
+
+    .page h3{
+      color: #ff4b5c;
+      margin-bottom: 15px;
+    }
+
+    .page p{
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .buttons{
+      display: flex;
+      gap: 10px;
+    }
+
+    button{
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #a42484;
+      color: white;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    button:hover{
+      background: #e409b4;
+    }
+
+    @keyframes fade{
+      from{
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .kata1{
+      font-family: 'Times New Roman', Times, serif;
+      font-size: medium;
+
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 15px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <!-- cover -->
+    <div class="cover" id="cover">
+      🥳🎁🎈🥳
+    </div>
+
+    <!-- Halaman 1 -->
+    <div class="page active" id="page1">
+      <h3>dari orang baik, pintar, ganteng(kata mamah)</h3>
+      <p class="kata1">
+        Semangat sidangnya ya kak reren,
+        Semoga lancar, dipermudah saat menjawab pertanyaan dosen, dan mendapatkan hasil terbaik. kakak pasti bisa 🎓✨
+      </p>
+
+      <div class="buttons">
+        <button onclick="nextPage(2)">Next ➜</button>
+      </div>
+    </div>
+
+    <!-- Halaman 2 -->
+    <div class="page" id="page2">
+      <div class="image">
+        <img src="LopLop.png" alt="NoImage">
+      </div>
+    </div>
+
+
+
+  <script>
+
+    const card = document.getElementById("card");
+    const cover = document.getElementById("cover");
+
+    cover.addEventListener("click", function(){
+      card.classList.add("open");
+    });
+
+    function nextPage(pageNumber){
+
+      document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
+      });
+
+      document.getElementById("page" + pageNumber).classList.add("active");
+    }
+
+    function prevPage(pageNumber){
+
+      document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
+      });
+
+      document.getElementById("page" + pageNumber).classList.add("active");
+    }
+
+  </script>
+
+</body>
+</html>>
